@@ -99,7 +99,6 @@ export default function Banner(): React.JSX.Element {
             <div className="hidden lg:inline-block relative">
               <Image
                 src="/assets/arrow.png"
-                alt="Book"
                 alt="Arrow pointer"
                 width={100}
                 height={100}
