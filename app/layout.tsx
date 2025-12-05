@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Abdul Basit Ali - Software Engineer & UI/UX Designer",
+  title: "Abdul Basit Ali - Software Developer & Cybersecurity Enthusiast",
   description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products that balance user needs and business goals. 3+ years of industry experience.",
   keywords: [
     "Abdul Basit Ali",

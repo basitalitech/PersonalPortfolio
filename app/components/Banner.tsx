@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const m: any = motion as any;
 
 export default function Banner(): React.JSX.Element {
-  const texts = ["Software Engineer", "UI/UX Designer", "React Native Developer"];
+  const texts = ["Software Developer", "Cyber Security Enthusiast"];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -59,7 +59,7 @@ export default function Banner(): React.JSX.Element {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 lg:pt-16 px-6">
-      <m.div className="container mx-auto max-w-6xl" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={containerVariants}>
+      <m.div className="container mx-auto max-w-6xl" initial="hidden" animate="visible" variants={containerVariants}>
         <div className="flex flex-col lg:flex-row items-start lg:items-center">
           {/* Left side - Character image */}
           <m.div className="flex justify-center lg:justify-start relative w-full lg:w-auto lg:mr-8" variants={imageVariant} whileHover="hover" initial="hidden" animate="visible">
@@ -75,7 +75,6 @@ export default function Banner(): React.JSX.Element {
                 </div>
               </div>
               <m.div className="relative w-[220px] h-[220px] md:w-[300px] md:h-[300px] group" whileHover={{ scale: 1.03 }}>
-                {/* Single profile image used instead of separate glow and portrait images */}
                 <Image
                   src="/assets/profile.png"
                   alt="Abdul Basit Ali - profile"
@@ -100,40 +99,40 @@ export default function Banner(): React.JSX.Element {
               <div className="absolute -bottom-2 left-8 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white/10"></div>
             </div>
 
-            <m.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-              <p className="text-2xl">A Designer who</p>
+            <m.div variants={containerVariants} initial="hidden" animate="visible">
+              <p className="text-2xl">A developer who</p>
               <h1 className="text-5xl tracking-tight lg:text-7xl font-semibold text-white leading-tight">
-                Judges a book
-                <br /> by its <span className="relative inline-block">
+                Builds secure
+                <br /> & delightful <span className="relative inline-block">
                   <Image src="/assets/circle.png" alt="Circle" width={200} height={200} className="absolute mt-2" />
-                  <span className="bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">cover</span>
+                  <span className="bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">experiences</span>
                 </span>
                 ...
               </h1>
-              <p className="text-md text-white/80">Because if the cover does not impress you what else can?</p>
+              <p className="text-md text-white/80">Focusing on resilient systems, secure code, and memorable user experiences.</p>
             </m.div>
           </div>
         </div>
 
         <div className="space-y-3 pt-15 text-center lg:text-left">
-          <m.p className="text-5xl text-white font-bold">
+          <m.p className="text-4xl text-white font-bold">
             I&apos;m a{' '}
             <AnimatePresence mode="wait">
               <m.span key={currentTextIndex} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25 }} className="inline-block">
                 {displayedText}
               </m.span>
             </AnimatePresence>
-            <span className="animate-pulse">|</span>
+            <span className="animate-pulse"></span>
           </m.p>
           <p className="text-lg lg:text-xl text-white/90 tracking-wide flex flex-wrap items-center justify-center lg:justify-start gap-2">
-            <span>Currently, I&apos;m a Software Engineer at</span>
+            <span>Currently working at</span>
             <span className="flex items-center gap-2">
-              <Image src="/assets/webhr.webp" alt="WebHR" width={20} height={20} className="w-5 h-5" style={{ width: "auto", height: "auto" }} />
-              <span className="text-blue-400 font-semibold">WebHR,</span>
+              <Image src="/assets/astrolinxx.png" alt="AstroLinx" width={20} height={20} className="w-5 h-5" style={{ width: "auto", height: "auto" }} />
+              <span className="text-white-400 font-semibold">AstroLinx</span>
             </span>
+            <span>as their main software developer and design engineer.</span>
           </p>
           <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">
-            A self-taught UI/UX designer, functioning in the industry for 3+ years now. I make meaningful and delightful digital products that create an equilibrium between user needs and business goals.
           </p>
         </div>
       </m.div>

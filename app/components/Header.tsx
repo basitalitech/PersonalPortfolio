@@ -2,17 +2,35 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 const m: any = motion as any;
 
 export default function Header(): React.JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  const pathname = usePathname();
+
+  // Handle hash scrolling after navigation
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash;
+      // Small delay to ensure DOM is ready
+      const timeoutId = setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
@@ -21,12 +39,32 @@ export default function Header(): React.JSX.Element {
     };
   }, [isMenuOpen]);
 
-  const handleLinkClick = () => setIsMenuOpen(false);
+  const handleLinkClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsMenuOpen(false);
+    
+    // Handle hash links that need to navigate to home page first
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const hash = href.substring(1); // Get "#section" part
+      
+      if (pathname !== "/") {
+        // Navigate to home page with hash - Next.js will handle the routing
+        router.push("/" + hash);
+      } else {
+        // Already on home page, just scroll to section
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  }, [pathname, router]);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#lab", label: "Lab" },
+    { href: "/#home", label: "Home" },
+    { href: "/#about", label: "About" },
+    { href: "/#lab", label: "Lab" },
+    { href: "/blog", label: "Tech Blog" },
   ];
 
   const hamburgerVariants = {
@@ -46,6 +84,18 @@ export default function Header(): React.JSX.Element {
     visible: { opacity: 1, y: 0, scaleY: 1, transition: { duration: 0.22 } },
   };
 
+  const getLinkClass = (h: string) => {
+    const base = "text-white hover:text-purple-400 transition-colors text-base font-normal";
+    const isActive = (h.startsWith("/#") && pathname === "/") || (h === "/blog" && pathname?.startsWith("/blog"));
+    return isActive ? base.replace("text-white", "text-cyan-400") : base;
+  };
+
+  const getMobileLinkClass = (h: string) => {
+    const base = "block px-6 py-3 hover:text-purple-400 hover:bg-purple-400/10 transition-all duration-200 text-base font-normal rounded-lg";
+    const isActive = (h.startsWith("/#") && pathname === "/") || (h === "/blog" && pathname?.startsWith("/blog"));
+    return isActive ? base.replace("text-white", "text-cyan-400") : base.replace("hover:text-purple-400", "text-white hover:text-purple-400");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#110720]/80 backdrop-blur-sm border-b border-white/10">
       <nav className="px-6 py-4">
@@ -60,7 +110,7 @@ export default function Header(): React.JSX.Element {
           <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
             {navLinks.map((link) => (
               <m.li key={link.href} whileHover={{ y: -2 }} className="m-0 p-0">
-                <Link href={link.href} className="text-white hover:text-purple-400 transition-colors text-base font-normal">
+                <Link href={link.href} onClick={(e) => handleLinkClick(e, link.href)} className={getLinkClass(link.href)}>
                   {link.label}
                 </Link>
               </m.li>
@@ -95,7 +145,7 @@ export default function Header(): React.JSX.Element {
               <ul className="flex flex-col list-none m-0 p-4 gap-2">
                 {navLinks.map((link) => (
                   <li key={link.href} className="m-0 p-0">
-                    <Link href={link.href} onClick={handleLinkClick} className="block px-6 py-3 text-white hover:text-purple-400 hover:bg-purple-400/10 transition-all duration-200 text-base font-normal rounded-lg">
+                    <Link href={link.href} onClick={(e) => handleLinkClick(e, link.href)} className={getMobileLinkClass(link.href)}>
                       {link.label}
                     </Link>
                   </li>
