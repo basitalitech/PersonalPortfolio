@@ -89,14 +89,16 @@ export default function Header(): React.JSX.Element {
   const getLinkClass = (h: string) => {
     const base = "text-white hover:text-purple-400 transition-colors text-base font-normal";
     const hashSection = h.replace("/#", "#");
-    const isActive = (h.startsWith("/#") && pathname === "/" && window.location.hash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
+    const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
+    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
     return isActive ? base.replace("text-white", "text-cyan-400") : base;
   };
 
   const getMobileLinkClass = (h: string) => {
     const base = "block px-6 py-3 hover:text-purple-400 hover:bg-purple-400/10 transition-all duration-200 text-base font-normal rounded-lg";
     const hashSection = h.replace("/#", "#");
-    const isActive = (h.startsWith("/#") && pathname === "/" && window.location.hash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
+    const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
+    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
     return isActive ? base.replace("text-white", "text-cyan-400") : base.replace("hover:text-purple-400", "text-white hover:text-purple-400");
   };
 
