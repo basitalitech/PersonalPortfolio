@@ -101,11 +101,18 @@ export default function Banner(): React.JSX.Element {
 
             <m.div variants={containerVariants} initial="hidden" animate="visible">
               <p className="text-2xl">A developer who</p>
-              <h1 className="text-5xl tracking-tight lg:text-7xl font-semibold text-white leading-tight">
+                <h1 className="text-5xl tracking-tight lg:text-7xl font-semibold text-white leading-tight">
                 Builds secure
-                <br /> & delightful <span className="relative inline-block">
-                  <Image src="/assets/circle.png" alt="Circle" width={200} height={200} className="absolute mt-2" />
-                  <span className="bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">experiences</span>
+                <br /> & delightful <span className="relative inline-block px-2">
+                  <Image
+                    src="/assets/circle.svg"
+                    alt="Circle background"
+                    width={600}
+                    height={600}
+                    className="absolute top-[62%] left-[50%] -translate-x-1/2 -translate-y-[50%] z-0 w-[280px] h-[2500px] md:top-[62%] md:left-[50%] md:w-[450px] md:h-[450px] pointer-events-none opacity-80"
+                    priority
+                  />
+                  <span className="relative z-10 bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">experiences</span>
                 </span>
                 ...
               </h1>
@@ -130,7 +137,7 @@ export default function Banner(): React.JSX.Element {
               <Image src="/assets/astrolinxx.png" alt="AstroLinx" width={20} height={20} className="w-5 h-5" style={{ width: "auto", height: "auto" }} />
               <span className="text-white-400 font-semibold">AstroLinx</span>
             </span>
-            <span>as their main software developer and design engineer.</span>
+            <span>as one of their main software developer and design engineer.</span>
           </p>
           <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">
           </p>
