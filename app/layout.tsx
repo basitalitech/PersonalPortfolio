@@ -33,14 +33,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ibiimemon.com",
+    url: "https://basitali.tech",
     title: "Abdul Basit Ali - Software Engineer & UI/UX Designer",
     description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products.",
     siteName: "Abdul Basit Ali Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdul Basit Ali - Software Engineer & UI/UX Designer",
+    title: "Abdul Basit Ali - Software Developer & Cybersecurity Enthusiast",
     description: "A self-taught UI/UX designer and Software Engineer at WebHR.",
   },
   robots: {

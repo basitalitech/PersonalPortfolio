@@ -15,27 +15,27 @@ interface ExperienceCard {
 const experienceCards: ExperienceCard[] = [
   {
     id: 1,
-    title: "WebHR - HR Management App",
-    description: "WebHR automates all of your company's HR processes such as Recruitment, Onboarding, Payroll, Time & Attendance, Leaves & PTO, Performance, and much more.",
-    icon: "/cards/card-1.png",
+    title: "Food Delivery App (Expo)",
+    description: "Developed a streamlined food delivery application using the Expo framework. The app features an intuitive interface that allows users to order seamlessly after creating an account via phone number and password.",
+    icon: "/cards/card1.png",
   },
   {
     id: 2,
-    title: "WebHR Kiosk - Time Clock Kiosk",
-    description: "WebHR Kiosk is a time clock kiosk that allows you to clock in and out of your work. It is a simple and easy to use app that allows you to clock in and out of your work.",
-    icon: "/cards/card-2.png",
+    title: "POS Waiter Companion App (Expo)",
+    description: "Developed a mobile waiter companion app designed to sync seamlessly with a primary POS system. Built using the Expo framework, the application features a clean, beginner-friendly UI and modern design elements to enhance operational efficiency.",
+    icon: "/cards/card2.png",
   },
   {
     id: 3,
-    title: "Somezing - AI-Powered Agents",
-    description: "Somezing is a AI-Powered Agents to Automate Your Workflows. It is a simple and easy to use app that allows you to automate your workflows.",
-    icon: "/cards/card-3.png",
+    title: "POS Software (Next.js + Electron)",
+    description: "Built a robust Point-of-Sale system using Next.js, packaged within an Electron container. This architecture delivers a standalone desktop application with a zero-dependency installer, ensuring a frictionless setup experience for end users.",
+    icon: "/cards/card3.png",
   },
   {
     id: 4,
-    title: "FileIT - File Sharing App",
-    description: "FileIT is a file sharing app that allows you to share files with your friends and family. It is a simple and easy to use app that allows you to share files with your friends and family.",
-    icon: "/cards/card-4.png",
+    title: "Face Mask Classifier (Python)",
+    description: "Developed a computer vision software in Python utilizing the MobileNetV2 architecture. The model was trained on a dataset of approximately 10,000 images to classify face mask usage into three distinct categories: with mask, without mask, and incorrectly worn mask.",
+    icon: "/cards/card4.png",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function Experience(): React.JSX.Element {
     <m.section id="experience" className="py-20 px-6" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
       <div className="container mx-auto max-w-6xl">
         <m.div className="text-center mb-16" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.1 }}>
-          <m.h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Work Experience</m.h2>
+          <m.h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Experience</m.h2>
           <p className="text-lg text-white/80 max-w-4xl mx-auto">
             Here are some of the projects and platforms I've worked on throughout my career. Each one has contributed to my growth as a developer.
           </p>
@@ -60,12 +60,12 @@ export default function Experience(): React.JSX.Element {
               transition={{ type: 'spring', stiffness: 120, damping: 16, delay: index * 0.1 }}
             >
               <div className="mb-4 ">
-                <m.div whileHover={{ scale: 1.05 }} className="inline-block">
+                <m.div whileHover={{ scale: 1.2 }} className="inline-block">
                 <Image
                   src={card.icon}
                   alt={card.title}
-                  width={160}
-                  height={160}
+                  width={210}
+                  height={210}
                   className="object-contain"
                 />
                 </m.div>
@@ -78,12 +78,13 @@ export default function Experience(): React.JSX.Element {
                 {card.description}
               </p>
               <Link
-                href="https://ibiimemon.com/lab"
+                // href="https://basitali.tech/projects"
+                href="/projects"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
               >
-                <m.span whileHover={{ x: 6, scale: 1.02 }}>LEARN MORE →</m.span>
+                <m.span whileHover={{ x: 6, scale: 1.02 }}>Learn More →</m.span>
               </Link>
               </div>
 

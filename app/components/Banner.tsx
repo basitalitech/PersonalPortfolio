@@ -109,10 +109,10 @@ export default function Banner(): React.JSX.Element {
                     alt="Circle background"
                     width={600}
                     height={600}
-                    className="absolute top-[62%] left-[50%] -translate-x-1/2 -translate-y-[50%] z-0 w-[280px] h-[2500px] md:top-[62%] md:left-[50%] md:w-[450px] md:h-[450px] pointer-events-none opacity-80"
+                    className="absolute top-[62%] left-[50%] -translate-x-1/2 -translate-y-[50%] z-10 w-[280px] h-[2500px] md:top-[62%] md:left-[50%] md:w-[450px] md:h-[450px] pointer-events-none opacity-80"
                     priority
                   />
-                  <span className="relative z-10 bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">experiences</span>
+                  <span className="relative z-0 bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">experiences</span>
                 </span>
                 ...
               </h1>

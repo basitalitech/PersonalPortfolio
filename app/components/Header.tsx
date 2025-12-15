@@ -65,6 +65,7 @@ export default function Header(): React.JSX.Element {
     { href: "/#experience", label: "Experience" },
     { href: "/#about", label: "About" },
     { href: "/#lab", label: "Lab" },
+    { href: "/projects", label: "Projects" },
     { href: "/#contact", label: "Contact" },
     { href: "/blog", label: "Tech Blog" },
   ];
@@ -90,7 +91,7 @@ export default function Header(): React.JSX.Element {
     const base = "text-white hover:text-purple-400 transition-colors text-base font-normal";
     const hashSection = h.replace("/#", "#");
     const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
-    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
+    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog")) || (h === "/projects" && pathname?.startsWith("/projects"));
     return isActive ? base.replace("text-white", "text-cyan-400") : base;
   };
 
@@ -98,7 +99,7 @@ export default function Header(): React.JSX.Element {
     const base = "block px-6 py-3 hover:text-purple-400 hover:bg-purple-400/10 transition-all duration-200 text-base font-normal rounded-lg";
     const hashSection = h.replace("/#", "#");
     const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
-    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog"));
+    const isActive = (h.startsWith("/#") && pathname === "/" && currentHash === hashSection) || (h === "/blog" && pathname?.startsWith("/blog")) || (h === "/projects" && pathname?.startsWith("/projects"));
     return isActive ? base.replace("text-white", "text-cyan-400") : base.replace("hover:text-purple-400", "text-white hover:text-purple-400");
   };
 
