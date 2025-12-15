@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-// useState removed as it is used inside CodeBlock rather than here
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -16,6 +16,7 @@ interface PostContentProps {
 }
 
 export default function PostContent({ title, date, content, readTime }: PostContentProps) {
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
   return (
     <m.section className="px-6" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
       <div className="container mx-auto max-w-6xl">
@@ -81,6 +82,16 @@ export default function PostContent({ title, date, content, readTime }: PostCont
                       if (inline) return <code className={className} {...props}>{children}</code>;
                       return <></>;
                     },
+                    // Add click handler to images for lightbox
+                    img: ({ src, alt, ...props }: any) => (
+                      <img
+                        src={src}
+                        alt={alt}
+                        {...props}
+                        className="cursor-pointer hover:opacity-80 transition-opacity"
+                        onClick={() => setEnlargedImage(src)}
+                      />
+                    ),
                   }}
                 >
                   {content}
@@ -95,6 +106,55 @@ export default function PostContent({ title, date, content, readTime }: PostCont
             </m.div>
           </footer>
         </m.article>
+
+        {/* Image Lightbox Modal */}
+        {enlargedImage && (
+          <m.div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setEnlargedImage(null)}
+          >
+            <m.div
+              className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setEnlargedImage(null)}
+                className="absolute top-4 right-4 z-51 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Close image"
+              >
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Enlarged Image */}
+              <img
+                src={enlargedImage}
+                alt="Enlarged view"
+                className="w-full h-full object-contain rounded-lg"
+              />
+            </m.div>
+          </m.div>
+        )}
       </div>
     </m.section>
   );
